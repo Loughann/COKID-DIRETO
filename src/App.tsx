@@ -110,6 +110,18 @@ export default function App() {
   };
 
   const handleCheckout = (planId: string) => {
+    if (planId === 'basic_10') {
+      window.location.href = 'https://pay.lowify.com.br/checkout?product_id=rJu6er';
+      return;
+    }
+    if (planId === 'premium_upsell_17') {
+      window.location.href = 'https://pay.lowify.com.br/go.php?offer=2not4ae';
+      return;
+    }
+    if (planId === 'premium_2700') {
+      window.location.href = 'https://pay.lowify.com.br/checkout.php?product_id=OeqTOG';
+      return;
+    }
     alert(`Redirecionando para o checkout... Plano: ${planId}`);
     setIsModalOpen(false);
   };
