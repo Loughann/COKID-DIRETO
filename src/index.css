@@ -1,0 +1,29 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Fredoka", ui-sans-serif, system-ui, sans-serif;
+  
+  --color-brand-green: #0a7337;
+  --color-brand-gold: #ffc107;
+  --color-brand-red: #e63946;
+  --color-brand-blue: #3a86ff;
+}
+
+@layer utilities {
+  @keyframes pulseLight {
+    0%, 100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.02);
+    }
+  }
+  .animate-pulse-light {
+    animation: pulseLight 2s infinite ease-in-out;
+  }
+}
+
+body {
+  font-family: var(--font-sans);
+}
+
