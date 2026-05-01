@@ -18,13 +18,30 @@
     s.parentNode.insertBefore(t,s)}(window, document,'script',
     'https://connect.facebook.net/en_US/fbevents.js');
     fbq('init', '1178191033789622');
-    fbq('track', 'PageView');
+    fbq('track', 'InitiateCheckout');
     </script>
     <!-- End Meta Pixel Code -->
+
+    <!-- Utmify Scripts -->
+    <script>
+      window.pixelId = "69f50e471073208149d967ad";
+      var a = document.createElement("script");
+      a.setAttribute("async", "");
+      a.setAttribute("defer", "");
+      a.setAttribute("src", "https://cdn.utmify.com.br/scripts/pixel/pixel.js");
+      document.head.appendChild(a);
+    </script>
+    <script
+      src="https://cdn.utmify.com.br/scripts/utms/latest.js"
+      data-utmify-prevent-xcod-sck
+      data-utmify-prevent-subids
+      async
+      defer
+    ></script>
   </head>
   <body>
     <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=1178191033789622&ev=PageView&noscript=1"
+    src="https://www.facebook.com/tr?id=1178191033789622&ev=InitiateCheckout&noscript=1"
     /></noscript>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
