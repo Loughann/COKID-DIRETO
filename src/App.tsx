@@ -134,7 +134,12 @@ export default function App() {
   const ctaClasses = "inline-flex items-center justify-center w-full sm:w-auto bg-[#ffc107] hover:bg-yellow-400 text-[#0a7337] font-bold text-xl py-5 px-8 rounded-full shadow-[0_6px_0_#b45309] hover:shadow-[0_3px_0_#b45309] hover:translate-y-[3px] transition-all uppercase animate-pulse duration-1000";
 
   return (
-    <div className="min-h-screen bg-gray-50 font-sans text-gray-900 pb-20 md:pb-0 overflow-x-hidden">
+    <div 
+      className="min-h-screen bg-gray-50 font-sans text-gray-900 pb-20 md:pb-0 overflow-x-hidden select-none"
+      onContextMenu={(e) => e.preventDefault()}
+      onDragStart={(e) => e.preventDefault()}
+      onCopy={(e) => e.preventDefault()}
+    >
       
       {/* =========================================
           HERO: BANNER FIXO SUPERIOR
