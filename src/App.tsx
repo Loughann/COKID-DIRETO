@@ -133,15 +133,6 @@ export default function App() {
   };
 
   const handleCheckout = (planId: string) => {
-    // Dispara evento IC do Meta Pixel
-    if (typeof window !== 'undefined' && (window as any).fbq) {
-      try {
-        (window as any).fbq('track', 'InitiateCheckout');
-      } catch (e) {
-        console.error('FB Pixel Error:', e);
-      }
-    }
-
     let baseUrl = '';
     if (planId === 'basic_10') baseUrl = 'https://pay.lowify.com.br/checkout?product_id=rJu6er';
     if (planId === 'premium_upsell_17') baseUrl = 'https://pay.lowify.com.br/go.php?offer=2not4ae';
