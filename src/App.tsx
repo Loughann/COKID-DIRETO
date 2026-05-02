@@ -132,10 +132,29 @@ export default function App() {
     }
   };
 
-  const trackInitiateCheckout = () => {
+  const handleCheckout = (planId: string) => {
     // Dispara evento IC do Meta Pixel
     if (typeof window !== 'undefined' && (window as any).fbq) {
-      (window as any).fbq('track', 'InitiateCheckout');
+      try {
+        (window as any).fbq('track', 'InitiateCheckout');
+      } catch (e) {
+        console.error('FB Pixel Error:', e);
+      }
+    }
+
+    let baseUrl = '';
+    if (planId === 'basic_10') baseUrl = 'https://pay.lowify.com.br/checkout?product_id=rJu6er';
+    if (planId === 'premium_upsell_17') baseUrl = 'https://pay.lowify.com.br/go.php?offer=2not4ae';
+    if (planId === 'premium_2700') baseUrl = 'https://pay.lowify.com.br/checkout.php?product_id=OeqTOG';
+    
+    if (baseUrl && typeof window !== 'undefined') {
+      const currentParams = window.location.search;
+      const joinChar = baseUrl.includes('?') ? '&' : '?';
+      const queryString = currentParams ? currentParams.replace('?', '') : '';
+      const finalUrl = queryString ? `${baseUrl}${joinChar}${queryString}` : baseUrl;
+      
+      // Force direct navigation, bypassing any SPA link interception
+      window.location.href = finalUrl;
     }
   };
 
@@ -532,13 +551,12 @@ export default function App() {
                 </ul>
               </div>
 
-              <a 
-                href="https://pay.lowify.com.br/checkout.php?product_id=OeqTOG"
-                onClick={trackInitiateCheckout}
+              <button 
+                onClick={() => handleCheckout('premium_2700')}
                 className="w-full bg-[#ffc107] hover:bg-yellow-400 text-[#0a7337] font-black text-xl py-6 rounded-2xl shadow-[0_6px_0_#b45309] hover:shadow-[0_3px_0_#b45309] hover:translate-y-[3px] transition-all uppercase animate-pulse-light text-center cursor-pointer block"
               >
                 COMPRAR PACOTE PREMIUM
-              </a>
+              </button>
               
               <p className="text-xs text-center text-gray-400 mt-4 font-bold flex justify-center items-center gap-1">
                 <ShieldCheck size={14}/> Compra Segura via plataforma oficial
@@ -703,21 +721,19 @@ export default function App() {
                 </div>
 
                 <div className="space-y-2 sm:space-y-3">
-                  <a 
-                    href="https://pay.lowify.com.br/go.php?offer=2not4ae"
-                    onClick={trackInitiateCheckout}
+                  <button 
+                    onClick={() => handleCheckout('premium_upsell_17')}
                     className="w-full bg-[#0a7337] hover:bg-green-700 text-[#ffc107] font-black text-sm sm:text-lg py-3 sm:py-4 px-2 sm:px-4 rounded-xl sm:rounded-2xl shadow-[0_4px_0_#064e26] sm:shadow-[0_6px_0_#064e26] hover:shadow-[0_2px_0_#064e26] hover:translate-y-[2px] sm:hover:translate-y-[4px] transition-all uppercase flex justify-center items-center gap-2 leading-none text-center cursor-pointer block"
                   >
                     SIM! QUERO OS BÔNUS POR R$17
-                  </a>
+                  </button>
                   
-                  <a 
-                     href="https://pay.lowify.com.br/checkout?product_id=rJu6er"
-                     onClick={trackInitiateCheckout}
+                  <button 
+                     onClick={() => handleCheckout('basic_10')}
                      className="w-full text-center text-[10px] sm:text-xs font-bold text-gray-400 hover:text-gray-700 pt-3 pb-1 transition-colors uppercase decoration-gray-300 underline underline-offset-4 cursor-pointer block"
                   >
                     Ignorar bônus exclusivos. Quero apenas o pacote Básico por R$10.
-                  </a>
+                  </button>
                 </div>
               </div>
             </motion.div>
