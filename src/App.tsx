@@ -132,26 +132,11 @@ export default function App() {
     }
   };
 
-  const handleCheckout = (planId: string) => {
+  const trackInitiateCheckout = () => {
     // Dispara evento IC do Meta Pixel
     if (typeof window !== 'undefined' && (window as any).fbq) {
       (window as any).fbq('track', 'InitiateCheckout');
     }
-
-    if (planId === 'basic_10') {
-      window.location.href = 'https://pay.lowify.com.br/checkout?product_id=rJu6er';
-      return;
-    }
-    if (planId === 'premium_upsell_17') {
-      window.location.href = 'https://pay.lowify.com.br/go.php?offer=2not4ae';
-      return;
-    }
-    if (planId === 'premium_2700') {
-      window.location.href = 'https://pay.lowify.com.br/checkout.php?product_id=OeqTOG';
-      return;
-    }
-    alert(`Redirecionando para o checkout... Plano: ${planId}`);
-    setIsModalOpen(false);
   };
 
   const handleBasicClick = (e: React.MouseEvent) => {
@@ -547,15 +532,13 @@ export default function App() {
                 </ul>
               </div>
 
-              <div 
-                role="button"
-                tabIndex={0}
-                onClick={() => handleCheckout('premium_2700')}
+              <a 
+                href="https://pay.lowify.com.br/checkout.php?product_id=OeqTOG"
+                onClick={trackInitiateCheckout}
                 className="w-full bg-[#ffc107] hover:bg-yellow-400 text-[#0a7337] font-black text-xl py-6 rounded-2xl shadow-[0_6px_0_#b45309] hover:shadow-[0_3px_0_#b45309] hover:translate-y-[3px] transition-all uppercase animate-pulse-light text-center cursor-pointer block"
-                onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') handleCheckout('premium_2700') }}
               >
                 COMPRAR PACOTE PREMIUM
-              </div>
+              </a>
               
               <p className="text-xs text-center text-gray-400 mt-4 font-bold flex justify-center items-center gap-1">
                 <ShieldCheck size={14}/> Compra Segura via plataforma oficial
@@ -720,25 +703,21 @@ export default function App() {
                 </div>
 
                 <div className="space-y-2 sm:space-y-3">
-                  <div 
-                    role="button"
-                    tabIndex={0}
-                    onClick={() => handleCheckout('premium_upsell_17')}
-                    className="w-full bg-[#0a7337] hover:bg-green-700 text-[#ffc107] font-black text-sm sm:text-lg py-3 sm:py-4 px-2 sm:px-4 rounded-xl sm:rounded-2xl shadow-[0_4px_0_#064e26] sm:shadow-[0_6px_0_#064e26] hover:shadow-[0_2px_0_#064e26] hover:translate-y-[2px] sm:hover:translate-y-[4px] transition-all uppercase flex justify-center items-center gap-2 leading-none text-center cursor-pointer"
-                    onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') handleCheckout('premium_upsell_17') }}
+                  <a 
+                    href="https://pay.lowify.com.br/go.php?offer=2not4ae"
+                    onClick={trackInitiateCheckout}
+                    className="w-full bg-[#0a7337] hover:bg-green-700 text-[#ffc107] font-black text-sm sm:text-lg py-3 sm:py-4 px-2 sm:px-4 rounded-xl sm:rounded-2xl shadow-[0_4px_0_#064e26] sm:shadow-[0_6px_0_#064e26] hover:shadow-[0_2px_0_#064e26] hover:translate-y-[2px] sm:hover:translate-y-[4px] transition-all uppercase flex justify-center items-center gap-2 leading-none text-center cursor-pointer block"
                   >
                     SIM! QUERO OS BÔNUS POR R$17
-                  </div>
+                  </a>
                   
-                  <div 
-                     role="button"
-                     tabIndex={0}
-                     onClick={() => handleCheckout('basic_10')}
+                  <a 
+                     href="https://pay.lowify.com.br/checkout?product_id=rJu6er"
+                     onClick={trackInitiateCheckout}
                      className="w-full text-center text-[10px] sm:text-xs font-bold text-gray-400 hover:text-gray-700 pt-3 pb-1 transition-colors uppercase decoration-gray-300 underline underline-offset-4 cursor-pointer block"
-                     onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') handleCheckout('basic_10') }}
                   >
                     Ignorar bônus exclusivos. Quero apenas o pacote Básico por R$10.
-                  </div>
+                  </a>
                 </div>
               </div>
             </motion.div>
