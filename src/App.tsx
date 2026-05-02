@@ -61,13 +61,16 @@ const FaqItem = ({ question, answer }: { question: string, answer: string }) => 
   const [isOpen, setIsOpen] = useState(false);
   return (
     <div className="border-b border-gray-200 py-4">
-      <button 
+      <div 
+        role="button"
+        tabIndex={0}
         onClick={() => setIsOpen(!isOpen)} 
-        className="flex w-full justify-between items-center text-left font-bold text-gray-800"
+        className="flex w-full justify-between items-center text-left font-bold text-gray-800 cursor-pointer"
+        onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') setIsOpen(!isOpen) }}
       >
         {question}
         <ChevronDown className={`transition-transform flex-shrink-0 ml-4 ${isOpen ? 'rotate-180 text-[#0a7337]' : 'text-gray-400'}`} />
-      </button>
+      </div>
       <AnimatePresence>
         {isOpen && (
           <motion.div 
@@ -130,6 +133,11 @@ export default function App() {
   };
 
   const handleCheckout = (planId: string) => {
+    // Dispara evento IC do Meta Pixel
+    if (typeof window !== 'undefined' && (window as any).fbq) {
+      (window as any).fbq('track', 'InitiateCheckout');
+    }
+
     if (planId === 'basic_10') {
       window.location.href = 'https://pay.lowify.com.br/checkout?product_id=rJu6er';
       return;
@@ -500,12 +508,15 @@ export default function App() {
                 <li className="flex gap-3 items-start opacity-40"><X className="text-gray-400 shrink-0 mt-0.5" size={24} /> <span className="text-sm font-medium text-gray-500 line-through">Sem Nenhum Bônus</span></li>
               </ul>
 
-              <button 
+              <div 
+                role="button"
+                tabIndex={0}
                 onClick={handleBasicClick}
-                className="w-full py-5 rounded-2xl border-4 border-[#48afff] bg-[#48afff] text-black font-black hover:bg-blue-400 hover:border-blue-400 transition-all uppercase text-lg"
+                className="w-full py-5 rounded-2xl border-4 border-[#48afff] bg-[#48afff] text-black font-black hover:bg-blue-400 hover:border-blue-400 transition-all uppercase text-lg text-center cursor-pointer"
+                onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') handleBasicClick(e as any) }}
               >
                 Comprar Básico
-              </button>
+              </div>
             </div>
 
             {/* PACOTE PREMIUM (The target) */}
@@ -536,12 +547,15 @@ export default function App() {
                 </ul>
               </div>
 
-              <button 
+              <div 
+                role="button"
+                tabIndex={0}
                 onClick={() => handleCheckout('premium_2700')}
-                className="w-full bg-[#ffc107] hover:bg-yellow-400 text-[#0a7337] font-black text-xl py-6 rounded-2xl shadow-[0_6px_0_#b45309] hover:shadow-[0_3px_0_#b45309] hover:translate-y-[3px] transition-all uppercase animate-pulse-light"
+                className="w-full bg-[#ffc107] hover:bg-yellow-400 text-[#0a7337] font-black text-xl py-6 rounded-2xl shadow-[0_6px_0_#b45309] hover:shadow-[0_3px_0_#b45309] hover:translate-y-[3px] transition-all uppercase animate-pulse-light text-center cursor-pointer block"
+                onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') handleCheckout('premium_2700') }}
               >
                 COMPRAR PACOTE PREMIUM
-              </button>
+              </div>
               
               <p className="text-xs text-center text-gray-400 mt-4 font-bold flex justify-center items-center gap-1">
                 <ShieldCheck size={14}/> Compra Segura via plataforma oficial
@@ -706,19 +720,25 @@ export default function App() {
                 </div>
 
                 <div className="space-y-2 sm:space-y-3">
-                  <button 
+                  <div 
+                    role="button"
+                    tabIndex={0}
                     onClick={() => handleCheckout('premium_upsell_17')}
-                    className="w-full bg-[#0a7337] hover:bg-green-700 text-[#ffc107] font-black text-sm sm:text-lg py-3 sm:py-4 px-2 sm:px-4 rounded-xl sm:rounded-2xl shadow-[0_4px_0_#064e26] sm:shadow-[0_6px_0_#064e26] hover:shadow-[0_2px_0_#064e26] hover:translate-y-[2px] sm:hover:translate-y-[4px] transition-all uppercase flex justify-center items-center gap-2 leading-none"
+                    className="w-full bg-[#0a7337] hover:bg-green-700 text-[#ffc107] font-black text-sm sm:text-lg py-3 sm:py-4 px-2 sm:px-4 rounded-xl sm:rounded-2xl shadow-[0_4px_0_#064e26] sm:shadow-[0_6px_0_#064e26] hover:shadow-[0_2px_0_#064e26] hover:translate-y-[2px] sm:hover:translate-y-[4px] transition-all uppercase flex justify-center items-center gap-2 leading-none text-center cursor-pointer"
+                    onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') handleCheckout('premium_upsell_17') }}
                   >
                     SIM! QUERO OS BÔNUS POR R$17
-                  </button>
+                  </div>
                   
-                  <button 
+                  <div 
+                     role="button"
+                     tabIndex={0}
                      onClick={() => handleCheckout('basic_10')}
-                     className="w-full text-center text-[10px] sm:text-xs font-bold text-gray-400 hover:text-gray-700 pt-3 pb-1 transition-colors uppercase decoration-gray-300 underline underline-offset-4"
+                     className="w-full text-center text-[10px] sm:text-xs font-bold text-gray-400 hover:text-gray-700 pt-3 pb-1 transition-colors uppercase decoration-gray-300 underline underline-offset-4 cursor-pointer block"
+                     onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') handleCheckout('basic_10') }}
                   >
                     Ignorar bônus exclusivos. Quero apenas o pacote Básico por R$10.
-                  </button>
+                  </div>
                 </div>
               </div>
             </motion.div>
