@@ -132,6 +132,23 @@ export default function App() {
     }
   };
 
+  const handleCheckout = (url: string) => {
+    // Fire Meta Pixel InitiateCheckout Event
+    if (typeof window !== 'undefined' && (window as any).fbq) {
+      (window as any).fbq('track', 'InitiateCheckout');
+    }
+    
+    // Redirect with query params
+    if (typeof window !== 'undefined') {
+      const finalUrl = new URL(url);
+      const searchParams = new URLSearchParams(window.location.search);
+      searchParams.forEach((value, key) => {
+        finalUrl.searchParams.set(key, value);
+      });
+      window.location.href = finalUrl.toString();
+    }
+  };
+
   const handleBasicClick = (e: React.MouseEvent) => {
     e.preventDefault();
     setIsModalOpen(true); // Abre Upsell
@@ -581,12 +598,12 @@ export default function App() {
                 </ul>
               </div>
 
-              <a 
-                href="https://pay.lowify.com.br/checkout.php?product_id=OeqTOG"
+              <button 
+                onClick={(e) => { e.preventDefault(); handleCheckout('https://pay.lowify.com.br/checkout.php?product_id=OeqTOG'); }}
                 className="w-full bg-[#ffc107] hover:bg-yellow-400 text-[#0a7337] font-black text-xl py-6 rounded-2xl shadow-[0_6px_0_#b45309] hover:shadow-[0_3px_0_#b45309] hover:translate-y-[3px] transition-all uppercase animate-pulse-light text-center cursor-pointer block inline-block"
               >
                 COMPRAR PACOTE PREMIUM
-              </a>
+              </button>
               
               <p className="text-xs text-center text-gray-400 mt-4 font-bold flex justify-center items-center gap-1">
                 <ShieldCheck size={14}/> Compra Segura via plataforma oficial
@@ -711,19 +728,19 @@ export default function App() {
                 </div>
 
                 <div className="space-y-2 sm:space-y-3">
-                  <a 
-                    href="https://pay.lowify.com.br/go.php?offer=2not4ae"
+                  <button 
+                    onClick={(e) => { e.preventDefault(); handleCheckout('https://pay.lowify.com.br/go.php?offer=2not4ae'); }}
                     className="w-full bg-[#f1ff00] hover:bg-yellow-400 text-[#1c6110] font-black text-sm sm:text-lg py-3 sm:py-4 px-2 sm:px-4 rounded-[16px] shadow-[0_4px_0_#b45309] sm:shadow-[0_6px_0_#b45309] hover:shadow-[0_2px_0_#b45309] hover:translate-y-[2px] sm:hover:translate-y-[4px] transition-all uppercase flex justify-center items-center gap-2 leading-none text-center cursor-pointer block animate-pulse-light inline-block"
                   >
                     SIM! QUERO OS BÔNUS POR R$17
-                  </a>
+                  </button>
                   
-                  <a 
-                     href="https://pay.lowify.com.br/checkout?product_id=rJu6er"
+                  <button 
+                     onClick={(e) => { e.preventDefault(); handleCheckout('https://pay.lowify.com.br/checkout?product_id=rJu6er'); }}
                      className="w-full text-center text-[10px] sm:text-xs font-bold text-gray-400 hover:text-gray-700 pt-3 pb-1 transition-colors uppercase decoration-gray-300 underline underline-offset-4 cursor-pointer block inline-block"
                   >
                     Ignorar bônus exclusivos. Quero apenas o pacote Básico por R$10.
-                  </a>
+                  </button>
                 </div>
               </div>
             </motion.div>
