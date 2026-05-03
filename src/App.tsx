@@ -139,13 +139,12 @@ export default function App() {
     if (planId === 'premium_2700') baseUrl = 'https://pay.lowify.com.br/checkout.php?product_id=OeqTOG';
     
     if (baseUrl && typeof window !== 'undefined') {
-      const currentParams = window.location.search;
-      const joinChar = baseUrl.includes('?') ? '&' : '?';
-      const queryString = currentParams ? currentParams.replace('?', '') : '';
-      const finalUrl = queryString ? `${baseUrl}${joinChar}${queryString}` : baseUrl;
-      
-      // Force direct navigation, bypassing any SPA link interception
-      window.location.href = finalUrl;
+      const url = new URL(baseUrl);
+      const searchParams = new URLSearchParams(window.location.search);
+      searchParams.forEach((value, key) => {
+        url.searchParams.set(key, value);
+      });
+      window.location.href = url.toString();
     }
   };
 
@@ -167,9 +166,9 @@ export default function App() {
       {/* =========================================
           HERO: BANNER FIXO SUPERIOR
       ========================================= */}
-      <div className="bg-[#ff0000] text-white text-xs md:text-sm font-bold text-center py-2.5 px-4 sticky top-0 z-50 flex items-center justify-center gap-2 shadow-md uppercase tracking-wider leading-snug">
+      <div className="bg-[#7d0000] text-white text-xs md:text-sm font-bold text-center py-2.5 px-4 sticky top-0 z-50 flex items-center justify-center gap-2 shadow-md uppercase tracking-wider leading-snug">
         <span>
-          HOJE {new Date().toLocaleDateString('pt-BR', { weekday: 'long' }).split('-')[0].toUpperCase()}{new Date().toLocaleDateString('pt-BR', { weekday: 'long' }).includes('-') ? '-' + new Date().toLocaleDateString('pt-BR', { weekday: 'long' }).split('-')[1].toUpperCase() : ''}, {String(new Date().getDate()).padStart(2, '0')} DE {new Date().toLocaleDateString('pt-BR', { month: 'long' }).toUpperCase()} É O ÚLTIMO DIA DA OFERTA VÁLIDA DE R$10!
+          SOMENTE HOJE, <span className="text-[#ffc107]">{new Date().toLocaleDateString('pt-BR', { weekday: 'long' }).toUpperCase()}, {new Date().getDate()} DE {new Date().toLocaleDateString('pt-BR', { month: 'long' }).toUpperCase()}</span> É O ÚLTIMO DIA PARA APROVEITAR A OFERTA POR APENAS <span className="text-[#ffc107]">R$10,00</span>!
         </span>
       </div>
 
@@ -203,7 +202,7 @@ export default function App() {
           </h1>
           
           <h2 className="text-lg md:text-xl text-green-50/90 mb-10 font-bold drop-shadow-md max-w-3xl mx-auto leading-relaxed">
-            Desconecte as crianças das telas! Garanta o Álbum da copa do mundo 2026 completo para colecionar, colar as figurinhas e reviver com eles a emoção de preencher um álbum juntinhos.
+            <span className="text-[#ffd300]">PARE DE GASTAR CARO NO ALBUM DA COPA DO MUNDO!</span> Garanta o Álbum da copa do mundo 2026 completo com Envio no mesmo DIA! Para colecionar, colar as figurinhas e reviver a emoção de preencher um álbum completo.
           </h2>
 
           {/* VIDEO CAPA MUITO IMPORTANTE */}
@@ -258,7 +257,7 @@ export default function App() {
           {/* TEXTO SUPLEMENTAR */}
           <div className="bg-[#0b5c2d]/50 p-4 rounded-3xl backdrop-blur max-w-2xl mx-auto mb-8 border border-green-600/30">
             <p className="text-green-50 text-sm md:text-base font-medium italic">
-              "Um fenônemo de entretenimento familiar. Mais de 4.000 famílias já acessaram e transformaram a espera da Copa em momentos mágicos longe dos celulares."
+              "Um fenônemo de entretenimento familiar. Mais de 4.000 famílias já receberam e transformaram a espera da Copa em momentos mágicos."
             </p>
           </div>
 
@@ -294,7 +293,7 @@ export default function App() {
         className="py-20 px-4 bg-white relative overflow-hidden"
       >
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl md:text-5xl font-black text-center text-[#0a7337] mb-12 uppercase drop-shadow-sm tracking-tight">O Que Você Vai <span className="text-[#3a86ff]">Receber?</span></h2>
+          <h2 className="text-3xl md:text-5xl font-black text-center text-[#0a7337] mb-12 uppercase drop-shadow-sm tracking-tight">O Que Você Vai <span className="text-[#00426f]">Receber?</span></h2>
           
           {/* CARROSSEL DE IMAGENS (Entregável) */}
           <div className="overflow-hidden pb-12 -mx-4 md:mx-0 px-4 md:px-0">
@@ -304,14 +303,14 @@ export default function App() {
               transition={{ ease: "linear", duration: 15, repeat: Infinity }}
             >
               {[ 
-                { title: "Álbum Base Exclusivo", color: "bg-[#0a7337]", icon: <BookOpen size={40}/> },
+                { title: "Album Estádios copa 2026", color: "bg-[#0a7337]", icon: <BookOpen size={40}/> },
                 { title: "+400 Figurinhas Alta Qualidade", color: "bg-[#3a86ff]", icon: <Printer size={40}/> },
-                { title: "Certificado de Colecionador", color: "bg-[#ffc107] text-[#b45309]", icon: <Medal size={40}/> },
-                { title: "Instruções Passo a Passo", color: "bg-[#e63946]", icon: <CheckSquare size={40}/> },
-                { title: "Álbum Base Exclusivo", color: "bg-[#0a7337]", icon: <BookOpen size={40}/> },
+                { title: "Certificado de Colecionador Oficial", color: "bg-[#ffc107] text-[#b45309]", icon: <Medal size={40}/> },
+                { title: "Figurinhas Jogadores Premium", color: "bg-[#e63946]", icon: <CheckSquare size={40}/> },
+                { title: "Álbum Copa do Mundo 2026", color: "bg-[#0a7337]", icon: <BookOpen size={40}/> },
                 { title: "+400 Figurinhas Alta Qualidade", color: "bg-[#3a86ff]", icon: <Printer size={40}/> },
-                { title: "Certificado de Colecionador", color: "bg-[#ffc107] text-[#b45309]", icon: <Medal size={40}/> },
-                { title: "Instruções Passo a Passo", color: "bg-[#e63946]", icon: <CheckSquare size={40}/> }
+                { title: "Certificado de Colecionador Oficial", color: "bg-[#ffc107] text-[#b45309]", icon: <Medal size={40}/> },
+                { title: "Materiais Bônus Copa 2026", color: "bg-[#e63946]", icon: <CheckSquare size={40}/> }
               ].map((item, idx) => (
                 <div key={idx} className={`shrink-0 w-[240px] md:w-[280px] aspect-square rounded-[2rem] p-6 flex flex-col items-center justify-center text-center shadow-lg transform transition-transform hover:-translate-y-2 border-4 border-gray-100 ${item.color} ${item.color.includes('text') ? '' : 'text-white'}`}>
                   <div className="mb-4 drop-shadow-md">{item.icon}</div>
@@ -414,26 +413,32 @@ export default function App() {
               <Gift size={18} fill="currentColor" /> Presentes Especiais
             </div>
             <h2 className="text-3xl md:text-5xl font-black text-gray-900 uppercase leading-tight">
-              Hoje você leva uma super coleção de <span className="text-[#e63946] underline decoration-[#ffc107] decoration-8 underline-offset-4">Bônus Inéditos</span>!
+              Hoje você leva uma super coleção de <span className="text-[#ff0000] underline decoration-[#ffc107] decoration-8 underline-offset-4">Bônus Inéditos</span>!
             </h2>
             <p className="text-gray-600 font-bold mt-6 text-lg">Apenas para quem garantir o PACOTE PREMIUM nesta página.</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
             {[ 
-              { title: "Livro de Colorir Especial", desc: "Os craques em versão desenho animado para as crianças soltarem as cores.", icon: <Paintbrush className="text-[#3a86ff]"/>, val: "R$ 29,90" },
-              { title: "Receitas Kids da Copa", desc: "Aprenda a fazer os lanchinhos tematicos da copa do mundo!", icon: <Utensils className="text-[#ffc107]"/>, val: "R$ 19,90" },
-              { title: "Cartas Jogadores Premium", desc: "Figurinhas dos jogadores premium douradas.", icon: <Sparkles className="text-[#e63946]"/>, val: "R$ 35,00" },
-              { title: "Álbum de Estádios", desc: "Álbum e figurinhas de todos estádios da copa do mundo 2026.", icon: <Trophy className="text-[#0a7337]"/>, val: "R$ 25,00" }
+              { title: "Livro de Colorir Jogadores", desc: "Os craques em versão desenho animado para as crianças soltarem as cores.", img: "https://iili.io/BLL4sb1.png", val: "R$ 29,90" },
+              { title: "Receitas Kids da Copa", desc: "Aprenda a fazer os lanchinhos tematicos da copa do mundo!", img: "https://iili.io/BLL4tsa.png", val: "R$ 19,90" },
+              { title: "Envelope Jogadores Premium", desc: "Figurinhas dos jogadores premium douradas.", img: "https://iili.io/BLL4ZWg.png", val: "R$ 35,00" },
+              { title: "Álbum de Estádios", desc: "Álbum e figurinhas de todos estádios da copa do mundo 2026.", img: "https://iili.io/BLL4bqJ.png", val: "R$ 25,00" }
             ].map((bonus, i) => (
-              <div key={i} className="bg-white p-6 rounded-[2rem] shadow-md border-2 border-dashed border-red-200 flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-4 hover:border-red-500 transition-colors group">
-                <div className="w-16 h-16 bg-red-50 rounded-2xl flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
-                  <div className="scale-150">{bonus.icon}</div>
-                </div>
-                <div>
+              <div key={i} className={`bg-white p-6 rounded-[2rem] shadow-md border-2 border-dashed border-red-200 flex ${bonus.img ? 'flex-col items-center' : 'flex-col sm:flex-row items-center sm:items-start text-center sm:text-left'} gap-4 hover:border-red-500 transition-colors group`}>
+                {bonus.img ? (
+                  <div className="w-full flex items-center justify-center group-hover:scale-105 transition-transform">
+                     <img src={bonus.img} alt={bonus.title} className="w-full max-w-[140px] md:max-w-[160px] object-contain drop-shadow-2xl" />
+                  </div>
+                ) : (
+                  <div className="w-16 h-16 bg-red-50 rounded-2xl flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+                    <div className="scale-150">{bonus.icon}</div>
+                  </div>
+                )}
+                <div className={bonus.img ? "text-center w-full" : ""}>
                   <h4 className="font-bold text-lg text-gray-800 uppercase tracking-tight mb-1">{bonus.title}</h4>
                   <p className="text-sm text-gray-600 mb-2 font-medium">{bonus.desc}</p>
-                  <p className="text-xs font-black text-[#e63946] bg-red-50 inline-block px-2 py-1 rounded">Valor: <span className="line-through text-gray-400 font-bold">{bonus.val}</span> <span className="ml-1 uppercase">Grátis Hoje!</span></p>
+                  <p className="text-sm font-black text-[#e63946] bg-red-50 inline-block px-3 py-1.5 rounded">Valor: <span className="line-through text-gray-400 font-bold">{bonus.val}</span> <span className="ml-1 uppercase">Grátis Hoje!</span></p>
                 </div>
               </div>
             ))}
@@ -452,110 +457,20 @@ export default function App() {
         className="py-16 bg-white text-center px-4"
       >
         <div className="max-w-2xl mx-auto">
-          <p className="text-gray-500 font-bold uppercase tracking-widest text-sm mb-4">Colocando na Ponta do Lápis...</p>
+          <p className="text-[#fa0000] font-bold uppercase tracking-widest text-sm mb-4">Colocando na Ponta do Lápis...</p>
           <div className="bg-gray-100 rounded-3xl p-8 shadow-inner border border-gray-200 text-left md:text-center space-y-4 max-w-md mx-auto">
             <div className="flex justify-between font-medium text-gray-600 border-b border-gray-200 pb-2"><span>Álbum Digital Completo:</span> <span>R$ 39,90</span></div>
             <div className="flex justify-between font-medium text-gray-600 border-b border-gray-200 pb-2"><span>Kit Figurinhas (+400):</span> <span>R$ 47,20</span></div>
             <div className="flex justify-between font-medium text-gray-600 border-b border-gray-200 pb-2"><span>Coleção de 4 Bônus VIP:</span> <span>R$ 109,90</span></div>
             <div className="flex justify-between font-black text-gray-400 text-xl pt-2 line-through decoration-[#ff0000]"><span>VALOR TOTAL:</span> <span className="text-[#ff0000]">R$ 197,00</span></div>
           </div>
-          <p className="mt-8 text-2xl md:text-3xl font-bold text-gray-800 leading-tight">
-            Mas relaxa! Não queremos cobrar nem metade disso. A diversão do seu filho vale mais!
+          <p className="mt-12 text-xl md:text-2xl font-bold text-white leading-relaxed bg-[#0a7337] w-screen relative left-1/2 -translate-x-1/2 py-10 px-4 max-w-none">
+            <span className="block max-w-4xl mx-auto">
+              <span className="text-[#ffc107]">MAS CALMA!</span> Você não precisa gastar um absurdo para garantir a alegria dos pequenos. Liberamos o álbum completo com +400 figurinhas <span className="text-[#ffc107]">POR APENAS R$ 10,00</span>. Assim que realizar a confirmação do pagamento, você recebera os dados no WhatsApp e todo material será enviado no mesmo dia, tá bom?
+              <br /><br />
+              <span className="text-[#ffc107]">Dá uma olhada nas reações de quem já recebeu o material 👇</span>
+            </span>
           </p>
-        </div>
-      </motion.section>
-
-      {/* =========================================
-          SESSÃO OFERTA (TACADA FINAL)
-      ========================================= */}
-      <motion.section 
-        initial={{ opacity: 0, y: 30 }} 
-        whileInView={{ opacity: 1, y: 0 }} 
-        viewport={{ once: true, margin: "-50px" }} 
-        transition={{ duration: 0.5 }}
-        id="ofertas" className="py-20 px-4 bg-[#0a7337] relative overflow-hidden"
-      >
-        {/* Decorative BG */}
-        <div className="absolute inset-0 bg-[#064e26] opacity-50 bg-[radial-gradient(#156d35_2px,transparent_2px)] [background-size:24px_24px]"></div>
-        
-        <div className="max-w-5xl mx-auto relative z-10">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-6xl font-black text-white uppercase drop-shadow-md">Garanta AGORA Seu <span className="text-[#ffc107]">Album!</span></h2>
-          </div>
-
-          <div className="flex flex-col lg:flex-row gap-6 lg:gap-8 items-center lg:items-end justify-center">
-            
-            {/* PACOTE BÁSICO (Downsell/Standard) */}
-            <div className="w-full max-w-sm bg-white rounded-[2.5rem] shadow-xl flex flex-col p-8 opacity-95 transform lg:scale-95">
-              <div className="text-center mb-6">
-                <h3 className="text-2xl font-bold text-gray-500 uppercase tracking-tight">Pacote Básico</h3>
-                <div className="mt-4 flex justify-center items-baseline gap-1 text-[#3a86ff]">
-                  <span className="text-xl font-bold">R$</span>
-                  <span className="text-6xl font-black tracking-tighter">10</span>
-                  <span className="text-xl font-bold">,00</span>
-                </div>
-                <p className="text-xs font-black text-white bg-[#3a86ff] inline-block px-3 py-1 rounded-full mt-2 uppercase">Pagamento Único</p>
-              </div>
-
-              <ul className="space-y-4 mb-8 flex-grow">
-                <li className="flex gap-3 items-center"><CheckCircle2 className="text-[#3a86ff] shrink-0" size={24} /> <span className="text-sm font-bold text-gray-700">Álbum Completo Copa 2026</span></li>
-                <li className="flex gap-3 items-center"><CheckCircle2 className="text-[#3a86ff] shrink-0" size={24} /> <span className="text-sm font-bold text-gray-700">+400 Figurinhas Jogadores</span></li>
-                <li className="flex gap-3 items-start opacity-40"><X className="text-gray-400 shrink-0 mt-0.5" size={24} /> <span className="text-sm font-medium text-gray-500 line-through">Sem Nenhum Bônus</span></li>
-              </ul>
-
-              <div 
-                role="button"
-                tabIndex={0}
-                onClick={handleBasicClick}
-                className="w-full py-5 rounded-2xl border-4 border-[#48afff] bg-[#48afff] text-black font-black hover:bg-blue-400 hover:border-blue-400 transition-all uppercase text-lg text-center cursor-pointer"
-                onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') handleBasicClick(e as any) }}
-              >
-                Comprar Básico
-              </div>
-            </div>
-
-            {/* PACOTE PREMIUM (The target) */}
-            <div className="w-full max-w-[420px] bg-white rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.5)] border-8 border-[#ffc107] flex flex-col p-8 relative z-20 transform lg:-translate-y-4">
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-[60%] bg-[#ffc107] text-[#0a7337] font-black px-6 py-2 rounded-full text-base uppercase tracking-widest shadow-xl whitespace-nowrap border-4 border-white flex items-center gap-2">
-                <Trophy fill="currentColor" size={20}/> Escolha Favorita
-              </div>
-              
-              <div className="text-center mb-6 mt-4">
-                <h3 className="text-3xl font-black text-[#e63946] uppercase tracking-tighter">Pacote Premium</h3>
-                <div className="mt-2 flex justify-center items-baseline gap-1 text-[#0a7337]">
-                  <span className="text-2xl font-bold opacity-80">R$</span>
-                  <span className="text-7xl font-black tracking-tighter">27</span>
-                  <span className="text-2xl font-bold opacity-80">,00</span>
-                </div>
-                <div className="mt-3 bg-red-100 text-red-600 text-sm font-black py-1.5 rounded-full inline-block px-4 uppercase animate-pulse">Menos de R$ 1 por dia!</div>
-              </div>
-
-              <div className="bg-green-50 rounded-2xl p-5 mb-6 border border-green-200 shadow-inner">
-                <div className="text-xs font-black text-[#0a7337] uppercase tracking-widest mb-3 flex items-center gap-2"><CheckSquare size={14}/> Tudo Incluído:</div>
-                <ul className="space-y-3">
-                  <li className="flex gap-3 items-center"><CheckCircle2 className="text-[#0a7337] shrink-0" size={20} /> <span className="text-sm text-gray-800 font-bold">Álbum Completo & +400 Figurinhas</span></li>
-                  <li className="flex gap-3 items-center"><CheckCircle2 className="text-[#0a7337] shrink-0" size={20} /> <span className="text-sm font-bold text-[#e63946]">Bônus: Livro de Colorir Kids</span></li>
-                  <li className="flex gap-3 items-center"><CheckCircle2 className="text-[#0a7337] shrink-0" size={20} /> <span className="text-sm font-bold text-[#e63946]">Bônus: Receitas Kids da Copa</span></li>
-                  <li className="flex gap-3 items-center"><CheckCircle2 className="text-[#0a7337] shrink-0" size={20} /> <span className="text-sm font-bold text-[#e63946]">Bônus: Figurinhas Jogadores Premium</span></li>
-                  <li className="flex gap-3 items-center"><CheckCircle2 className="text-[#0a7337] shrink-0" size={20} /> <span className="text-sm font-bold text-[#e63946]">Bônus: Álbum dos Estádios</span></li>
-                  <li className="flex gap-3 items-center"><CheckCircle2 className="text-[#0a7337] shrink-0" size={20} /> <span className="text-sm text-gray-800 font-bold">Receba em menos de 24H</span></li>
-                </ul>
-              </div>
-
-              <button 
-                onClick={() => handleCheckout('premium_2700')}
-                className="w-full bg-[#ffc107] hover:bg-yellow-400 text-[#0a7337] font-black text-xl py-6 rounded-2xl shadow-[0_6px_0_#b45309] hover:shadow-[0_3px_0_#b45309] hover:translate-y-[3px] transition-all uppercase animate-pulse-light text-center cursor-pointer block"
-              >
-                COMPRAR PACOTE PREMIUM
-              </button>
-              
-              <p className="text-xs text-center text-gray-400 mt-4 font-bold flex justify-center items-center gap-1">
-                <ShieldCheck size={14}/> Compra Segura via plataforma oficial
-              </p>
-            </div>
-          </div>
-          
-
         </div>
       </motion.section>
 
@@ -605,6 +520,101 @@ export default function App() {
       </motion.section>
 
       {/* =========================================
+          SESSÃO OFERTA (TACADA FINAL)
+      ========================================= */}
+      <motion.section 
+        initial={{ opacity: 0, y: 30 }} 
+        whileInView={{ opacity: 1, y: 0 }} 
+        viewport={{ once: true, margin: "-50px" }} 
+        transition={{ duration: 0.5 }}
+        id="ofertas" className="py-20 px-4 bg-[#0a7337] relative overflow-hidden"
+      >
+        {/* Decorative BG */}
+        <div className="absolute inset-0 bg-[#064e26] opacity-50 bg-[radial-gradient(#156d35_2px,transparent_2px)] [background-size:24px_24px]"></div>
+        
+        <div className="max-w-5xl mx-auto relative z-10">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-6xl font-black text-white uppercase drop-shadow-md">Garanta AGORA e receba hoje Seu <span className="text-[#ffc107]">Album da copa 2026!</span></h2>
+          </div>
+
+          <div className="flex flex-col lg:flex-row gap-6 lg:gap-8 items-center lg:items-end justify-center">
+            
+            {/* PACOTE BÁSICO (Downsell/Standard) */}
+            <div className="w-full max-w-sm bg-white rounded-[2.5rem] shadow-xl flex flex-col p-8 opacity-95 transform lg:scale-95">
+              <div className="text-center mb-6">
+                <h3 className="text-2xl font-bold text-gray-500 uppercase tracking-tight">Pacote Básico</h3>
+                <div className="mt-4 flex justify-center items-baseline gap-1 text-[#3a86ff]">
+                  <span className="text-xl font-bold">R$</span>
+                  <span className="text-6xl font-black tracking-tighter">10</span>
+                  <span className="text-xl font-bold">,00</span>
+                </div>
+                <p className="text-xs font-black text-white bg-[#3a86ff] inline-block px-3 py-1 rounded-full mt-2 uppercase">Pagamento Único</p>
+              </div>
+
+              <ul className="space-y-4 mb-8 flex-grow">
+                <li className="flex gap-3 items-center"><CheckCircle2 className="text-[#3a86ff] shrink-0" size={24} /> <span className="text-sm font-bold text-gray-700">Álbum Completo Copa 2026</span></li>
+                <li className="flex gap-3 items-center"><CheckCircle2 className="text-[#3a86ff] shrink-0" size={24} /> <span className="text-sm font-bold text-gray-700">+400 Figurinhas Jogadores</span></li>
+                <li className="flex gap-3 items-start opacity-40"><X className="text-gray-400 shrink-0 mt-0.5" size={24} /> <span className="text-sm font-medium text-gray-500 line-through">Sem Nenhum Bônus</span></li>
+              </ul>
+
+              <div 
+                role="button"
+                tabIndex={0}
+                onClick={handleBasicClick}
+                className="w-full py-6 rounded-[80px] border-solid border-4 border-[#48afff] bg-[#48afff] text-black font-black hover:bg-blue-400 hover:border-blue-400 transition-all uppercase text-xl text-center cursor-pointer animate-pulse-light block"
+                onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') handleBasicClick(e as any) }}
+              >
+                Comprar Básico
+              </div>
+            </div>
+
+            {/* PACOTE PREMIUM (The target) */}
+            <div className="w-full max-w-[420px] bg-white rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.5)] border-8 border-[#ffc107] flex flex-col p-8 relative z-20 transform lg:-translate-y-4">
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-[60%] bg-[#ffc107] text-[#0a7337] font-black px-6 py-2 rounded-full text-base uppercase tracking-widest shadow-xl whitespace-nowrap border-4 border-white flex items-center gap-2">
+                <Trophy fill="currentColor" size={20}/> Escolha Favorita
+              </div>
+              
+              <div className="text-center mb-6 mt-4">
+                <h3 className="text-3xl font-black text-[#e63946] uppercase tracking-tighter">Pacote Premium</h3>
+                <div className="mt-2 flex justify-center items-baseline gap-1 text-[#0a7337]">
+                  <span className="text-2xl font-bold opacity-80">R$</span>
+                  <span className="text-7xl font-black tracking-tighter">27</span>
+                  <span className="text-2xl font-bold opacity-80">,00</span>
+                </div>
+                <div className="mt-3 bg-red-100 text-red-600 text-sm font-black py-1.5 rounded-full inline-block px-4 uppercase animate-pulse">Menos de R$ 1 por dia!</div>
+              </div>
+
+              <div className="bg-green-50 rounded-2xl p-5 mb-6 border border-green-200 shadow-inner">
+                <div className="text-xs font-black text-[#0a7337] uppercase tracking-widest mb-3 flex items-center gap-2"><CheckSquare size={14}/> Tudo Incluído:</div>
+                <ul className="space-y-3">
+                  <li className="flex gap-3 items-center"><CheckCircle2 className="text-[#0a7337] shrink-0" size={20} /> <span className="text-sm text-gray-800 font-bold">Álbum Completo & +400 Figurinhas</span></li>
+                  <li className="flex gap-3 items-center"><CheckCircle2 className="text-[#0a7337] shrink-0" size={20} /> <span className="text-sm font-bold text-[#e63946]">Bônus: Livro de Colorir Jogadores</span></li>
+                  <li className="flex gap-3 items-center"><CheckCircle2 className="text-[#0a7337] shrink-0" size={20} /> <span className="text-sm font-bold text-[#e63946]">Bônus: Receitas Kids da Copa</span></li>
+                  <li className="flex gap-3 items-center"><CheckCircle2 className="text-[#0a7337] shrink-0" size={20} /> <span className="text-sm font-bold text-[#e63946]">Bônus: Envelope Jogadores Premium</span></li>
+                  <li className="flex gap-3 items-center"><CheckCircle2 className="text-[#0a7337] shrink-0" size={20} /> <span className="text-sm font-bold text-[#e63946]">Bônus: Álbum dos Estádios</span></li>
+                  <li className="flex gap-3 items-center"><CheckCircle2 className="text-[#0a7337] shrink-0" size={20} /> <span className="text-sm text-gray-800 font-bold">Receba em menos de 24H</span></li>
+                  <li className="flex gap-3 items-center"><Truck className="text-[#0a7337] shrink-0" size={20} /> <span className="text-sm text-[#0a7337] font-black uppercase">ENVIO GRÁTIS</span></li>
+                </ul>
+              </div>
+
+              <button 
+                onClick={() => handleCheckout('premium_2700')}
+                className="w-full bg-[#ffc107] hover:bg-yellow-400 text-[#0a7337] font-black text-xl py-6 rounded-2xl shadow-[0_6px_0_#b45309] hover:shadow-[0_3px_0_#b45309] hover:translate-y-[3px] transition-all uppercase animate-pulse-light text-center cursor-pointer block"
+              >
+                COMPRAR PACOTE PREMIUM
+              </button>
+              
+              <p className="text-xs text-center text-gray-400 mt-4 font-bold flex justify-center items-center gap-1">
+                <ShieldCheck size={14}/> Compra Segura via plataforma oficial
+              </p>
+            </div>
+          </div>
+          
+
+        </div>
+      </motion.section>
+
+      {/* =========================================
           FAQ E GARANTIA
       ========================================= */}
       <motion.section 
@@ -616,17 +626,8 @@ export default function App() {
       >
         <div className="max-w-4xl mx-auto">
           
-          {/* Garantia in-face */}
-          <div className="bg-[#0a7337] rounded-[2rem] p-8 md:p-12 shadow-2xl flex flex-col md:flex-row items-center gap-8 mb-16 transform -translate-y-8 text-center md:text-left relative overflow-hidden">
-             <div className="absolute top-0 right-0 w-64 h-64 bg-white opacity-5 rounded-full blur-3xl"></div>
-             <img src="https://iili.io/BsPnY1n.png" alt="Garantia" className="w-full max-w-[280px] md:max-w-[320px] shrink-0 drop-shadow-2xl" />
-             <div>
-                <p className="text-green-100 font-medium text-sm md:text-base leading-relaxed">Nós confiamos tanto na alegria que esse material vai gerar na sua casa que damos uma garantia incondicional. Comprou, recebeu, não gostou da qualidade? Mande um e-mail que devolvemos seu dinheiro na hora. Zero risco para você.</p>
-             </div>
-          </div>
-
           <h2 className="text-3xl md:text-4xl font-black text-center mb-10 text-gray-900 uppercase">Ficou Alguma Dúvida?</h2>
-          <div className="bg-white rounded-3xl shadow-sm border border-gray-200 p-6 md:p-10">
+          <div className="bg-white rounded-3xl shadow-sm border border-gray-200 p-6 md:p-10 mb-16">
             <FaqItem 
               question="Vou estar recebendo meu album copa do mundo 2026 completo?" 
               answer="SIM! O álbum copa do mundo 2026 completo com +400 figurinhas e todo material restante será enviado para você dentro de 24 Horas. " 
@@ -643,6 +644,15 @@ export default function App() {
               question="Terei que comprar mais figurinhas depois?" 
               answer="Não! Vem com todas as mais de 400 figurinhas atualizando semanalmente! Você se diverte, cola e coleciona o album completo da copa do mundo 2026!" 
             />
+          </div>
+
+          {/* Garantia in-face */}
+          <div className="bg-[#0a7337] rounded-[2rem] p-8 md:p-12 shadow-2xl flex flex-col md:flex-row items-center gap-8 text-center md:text-left relative overflow-hidden">
+             <div className="absolute top-0 right-0 w-64 h-64 bg-white opacity-5 rounded-full blur-3xl"></div>
+             <img src="https://iili.io/BsPnY1n.png" alt="Garantia" className="w-full max-w-[280px] md:max-w-[320px] shrink-0 drop-shadow-2xl" />
+             <div>
+                <p className="text-green-100 font-medium text-sm md:text-base leading-relaxed">Nós confiamos tanto na alegria que esse material vai gerar na sua casa que damos uma garantia incondicional. Comprou, recebeu, não gostou da qualidade? Mande um e-mail que devolvemos seu dinheiro na hora. Zero risco para você.</p>
+             </div>
           </div>
         </div>
       </motion.section>
@@ -709,12 +719,17 @@ export default function App() {
                   <div className="text-center mt-2 sm:mt-3">
                     <span className="text-[10px] sm:text-xs font-black bg-green-100 text-green-800 py-1 rounded-full px-3 inline-block">São apenas R$ 7,00 a mais!</span>
                   </div>
+                  <div className="text-center mt-2">
+                    <span className="text-[10px] sm:text-xs text-[#0a7337] font-black uppercase flex justify-center items-center gap-1">
+                      <Truck size={14} /> ENVIO GRÁTIS
+                    </span>
+                  </div>
                 </div>
 
                 <div className="space-y-2 sm:space-y-3">
                   <button 
                     onClick={() => handleCheckout('premium_upsell_17')}
-                    className="w-full bg-[#0a7337] hover:bg-green-700 text-[#ffc107] font-black text-sm sm:text-lg py-3 sm:py-4 px-2 sm:px-4 rounded-xl sm:rounded-2xl shadow-[0_4px_0_#064e26] sm:shadow-[0_6px_0_#064e26] hover:shadow-[0_2px_0_#064e26] hover:translate-y-[2px] sm:hover:translate-y-[4px] transition-all uppercase flex justify-center items-center gap-2 leading-none text-center cursor-pointer block"
+                    className="w-full bg-[#f1ff00] hover:bg-yellow-400 text-[#1c6110] font-black text-sm sm:text-lg py-3 sm:py-4 px-2 sm:px-4 rounded-[16px] shadow-[0_4px_0_#b45309] sm:shadow-[0_6px_0_#b45309] hover:shadow-[0_2px_0_#b45309] hover:translate-y-[2px] sm:hover:translate-y-[4px] transition-all uppercase flex justify-center items-center gap-2 leading-none text-center cursor-pointer block animate-pulse-light"
                   >
                     SIM! QUERO OS BÔNUS POR R$17
                   </button>
