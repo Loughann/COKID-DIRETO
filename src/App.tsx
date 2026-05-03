@@ -166,7 +166,7 @@ export default function App() {
       {/* =========================================
           HERO: BANNER FIXO SUPERIOR
       ========================================= */}
-      <div className="bg-[#7d0000] text-white text-xs md:text-sm font-bold text-center py-2.5 px-4 sticky top-0 z-50 flex items-center justify-center gap-2 shadow-md uppercase tracking-wider leading-snug">
+      <div className="bg-[#7d0000] text-white text-sm md:text-base font-bold text-center py-2.5 px-4 sticky top-0 z-50 flex items-center justify-center gap-2 shadow-md uppercase tracking-wider leading-snug">
         <span>
           SOMENTE HOJE, <span className="text-[#ffc107]">{new Date().toLocaleDateString('pt-BR', { weekday: 'long' }).toUpperCase()}, {new Date().getDate()} DE {new Date().toLocaleDateString('pt-BR', { month: 'long' }).toUpperCase()}</span> É O ÚLTIMO DIA PARA APROVEITAR A OFERTA POR APENAS <span className="text-[#ffc107]">R$10,00</span>!
         </span>
