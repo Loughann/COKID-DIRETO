@@ -132,11 +132,19 @@ export default function App() {
     }
   };
 
-  const trackInitiateCheckout = () => {
-    if (typeof window !== 'undefined' && (window as any).fbq) {
-      (window as any).fbq('track', 'InitiateCheckout');
-    }
-  };
+  useEffect(() => {
+    // Intercepta todos os cliques no documento e se for link de checkout dispara IC
+    const handleGlobalClick = (e: MouseEvent) => {
+      const target = (e.target as Element).closest('a[href*="pay.lowify.com.br"]');
+      if (target) {
+        if (typeof window !== 'undefined' && (window as any).fbq) {
+          (window as any).fbq('track', 'InitiateCheckout');
+        }
+      }
+    };
+    document.addEventListener('click', handleGlobalClick);
+    return () => document.removeEventListener('click', handleGlobalClick);
+  }, []);
 
   const handleBasicClick = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -147,7 +155,7 @@ export default function App() {
 
   return (
     <div 
-      className="min-h-screen bg-gray-50 font-sans text-gray-900 pb-20 md:pb-0 overflow-x-hidden select-none"
+      className="min-h-[100dvh] bg-gray-50 font-sans text-gray-900 pb-20 md:pb-0 overflow-x-hidden select-none touch-manipulation"
       onContextMenu={(e) => e.preventDefault()}
       onDragStart={(e) => e.preventDefault()}
       onCopy={(e) => e.preventDefault()}
@@ -180,6 +188,8 @@ export default function App() {
               alt="StartKids Álbum da Copa do Mundo Infantil" 
               className="w-full max-w-[280px] md:max-w-[320px] drop-shadow-2xl hover:scale-105 transition-transform duration-300" 
               referrerPolicy="no-referrer"
+              decoding="async"
+              fetchPriority="high"
             />
           </div>
 
@@ -212,6 +222,8 @@ export default function App() {
                              src="https://iili.io/BsLxE4S.png" 
                              alt="Thumbnail" 
                              className="absolute inset-0 w-full h-full object-cover opacity-70"
+                             loading="lazy"
+                             decoding="async"
                           />
                           <div className="w-20 h-20 bg-[#e63946] rounded-full flex items-center justify-center animate-pulse border-4 border-white shadow-[0_0_30px_rgba(230,57,70,0.8)] relative z-30 transform hover:scale-110 transition-transform">
                              <Play fill="white" className="text-white ml-2" size={32} />
@@ -418,7 +430,7 @@ export default function App() {
               <div key={i} className={`bg-white p-6 rounded-[2rem] shadow-md border-2 border-dashed border-red-200 flex ${bonus.img ? 'flex-col items-center' : 'flex-col sm:flex-row items-center sm:items-start text-center sm:text-left'} gap-4 hover:border-red-500 transition-colors group`}>
                 {bonus.img ? (
                   <div className="w-full flex items-center justify-center group-hover:scale-105 transition-transform">
-                     <img src={bonus.img} alt={bonus.title} className="w-full max-w-[140px] md:max-w-[160px] object-contain drop-shadow-2xl" />
+                     <img src={bonus.img} alt={bonus.title} className="w-full max-w-[140px] md:max-w-[160px] object-contain drop-shadow-2xl" loading="lazy" decoding="async" />
                   </div>
                 ) : (
                   <div className="w-16 h-16 bg-red-50 rounded-2xl flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
@@ -501,7 +513,7 @@ export default function App() {
                 "https://iili.io/BsL3xBn.jpg"
               ].map((img, i) => (
                  <div key={i} className="w-[280px] sm:w-[320px] bg-gray-50 rounded-3xl overflow-hidden shadow-lg border-4 border-white flex-shrink-0">
-                   <img src={img} alt={`Avaliação ${i+1}`} className="w-full h-auto object-cover hover:scale-105 transition-transform duration-300" />
+                   <img src={img} alt={`Avaliação ${i+1}`} className="w-full h-auto object-cover hover:scale-105 transition-transform duration-300" loading="lazy" decoding="async" />
                  </div>
               ))}
             </motion.div>
@@ -589,7 +601,6 @@ export default function App() {
 
               <a 
                 href="https://pay.lowify.com.br/checkout.php?product_id=OeqTOG"
-                onClick={trackInitiateCheckout}
                 className="w-full bg-[#ffc107] hover:bg-yellow-400 text-[#0a7337] font-black text-xl py-6 rounded-2xl shadow-[0_6px_0_#b45309] hover:shadow-[0_3px_0_#b45309] hover:translate-y-[3px] transition-all uppercase animate-pulse-light text-center cursor-pointer block inline-block"
               >
                 COMPRAR PACOTE PREMIUM
@@ -640,7 +651,7 @@ export default function App() {
           {/* Garantia in-face */}
           <div className="bg-[#0a7337] rounded-[2rem] p-8 md:p-12 shadow-2xl flex flex-col md:flex-row items-center gap-8 text-center md:text-left relative overflow-hidden">
              <div className="absolute top-0 right-0 w-64 h-64 bg-white opacity-5 rounded-full blur-3xl"></div>
-             <img src="https://iili.io/BsPnY1n.png" alt="Garantia" className="w-full max-w-[280px] md:max-w-[320px] shrink-0 drop-shadow-2xl" />
+             <img src="https://iili.io/BsPnY1n.png" alt="Garantia" className="w-full max-w-[280px] md:max-w-[320px] shrink-0 drop-shadow-2xl" loading="lazy" decoding="async" />
              <div>
                 <p className="text-green-100 font-medium text-sm md:text-base leading-relaxed">Nós confiamos tanto na alegria que esse material vai gerar na sua casa que damos uma garantia incondicional. Comprou, recebeu, não gostou da qualidade? Mande um e-mail que devolvemos seu dinheiro na hora. Zero risco para você.</p>
              </div>
@@ -658,6 +669,8 @@ export default function App() {
             alt="StartKids Álbum da Copa do Mundo Infantil" 
             className="w-full max-w-[120px] mb-8 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300"
             referrerPolicy="no-referrer"
+            loading="lazy"
+            decoding="async"
           />
           <p>&copy; {new Date().getFullYear()} StartKids Álbum Digital - Todos os direitos reservados. Compra 100% processada com segurança HTTPS e Criptografia.</p>
         </div>
@@ -691,8 +704,8 @@ export default function App() {
               </div>
 
               {/* Content */}
-              <div className="p-4 sm:p-6 md:p-8 overflow-y-auto">
-                <img src="https://iili.io/BsLL4dF.png" alt="Bônus Exclusivos" className="w-full max-w-[250px] sm:max-w-[320px] md:max-w-[400px] mx-auto mb-3 md:mb-5 drop-shadow-xl" />
+              <div className="p-4 sm:p-6 md:p-8 overflow-y-auto overscroll-y-contain">
+                <img src="https://iili.io/BsLL4dF.png" alt="Bônus Exclusivos" className="w-full max-w-[250px] sm:max-w-[320px] md:max-w-[400px] mx-auto mb-3 md:mb-5 drop-shadow-xl" loading="lazy" decoding="async" />
 
                 <div className="bg-yellow-50 rounded-2xl p-3 sm:p-4 border-2 border-yellow-300 mb-4 sm:mb-6 relative shadow-inner">
                   <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#ffc107] text-[#0a7337] text-[10px] sm:text-xs font-black px-3 py-0.5 sm:py-1 rounded-full uppercase tracking-widest shadow-sm whitespace-nowrap">
@@ -720,7 +733,6 @@ export default function App() {
                 <div className="space-y-2 sm:space-y-3">
                   <a 
                     href="https://pay.lowify.com.br/go.php?offer=2not4ae"
-                    onClick={trackInitiateCheckout}
                     className="w-full bg-[#f1ff00] hover:bg-yellow-400 text-[#1c6110] font-black text-sm sm:text-lg py-3 sm:py-4 px-2 sm:px-4 rounded-[16px] shadow-[0_4px_0_#b45309] sm:shadow-[0_6px_0_#b45309] hover:shadow-[0_2px_0_#b45309] hover:translate-y-[2px] sm:hover:translate-y-[4px] transition-all uppercase flex justify-center items-center gap-2 leading-none text-center cursor-pointer block animate-pulse-light inline-block"
                   >
                     SIM! QUERO OS BÔNUS POR R$17
@@ -728,7 +740,6 @@ export default function App() {
                   
                   <a 
                      href="https://pay.lowify.com.br/checkout?product_id=rJu6er"
-                     onClick={trackInitiateCheckout}
                      className="w-full text-center text-[10px] sm:text-xs font-bold text-gray-400 hover:text-gray-700 pt-3 pb-1 transition-colors uppercase decoration-gray-300 underline underline-offset-4 cursor-pointer block inline-block"
                   >
                     Ignorar bônus exclusivos. Quero apenas o pacote Básico por R$10.
