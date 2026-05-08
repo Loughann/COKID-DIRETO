@@ -264,7 +264,7 @@ export default function App() {
           </div>
 
           {/* CTA */}
-          <a href="#presentes-especiais" className={ctaClasses}>
+          <a href="#o-que-voce-vai-receber" className={ctaClasses}>
             QUERO O MEU ÁLBUM AGORA <ArrowRight className="ml-2" />
           </a>
           
@@ -292,7 +292,7 @@ export default function App() {
         whileInView={{ opacity: 1, y: 0 }} 
         viewport={{ once: true, margin: "-50px" }} 
         transition={{ duration: 0.5 }}
-        className="py-20 px-4 bg-white relative overflow-hidden"
+        id="o-que-voce-vai-receber" className="py-20 px-4 bg-white relative overflow-hidden"
       >
         <div className="max-w-5xl mx-auto">
           <h2 className="text-3xl md:text-5xl font-black text-center text-[#0a7337] mb-12 uppercase drop-shadow-sm tracking-tight">O Que Você Vai <span className="text-[#00426f]">Receber?</span></h2>
@@ -332,17 +332,17 @@ export default function App() {
               <ul className="space-y-4">
                 <li className="flex gap-3 items-start">
                   <CheckCircle2 className="text-[#0a7337] shrink-0 mt-1" size={24} />
-                  <p className="text-gray-700 font-medium">Você coleciona apenas as figurinhas que quiser ou em lotes.</p>
+                  <p className="text-gray-700 font-medium">Você recebe em casa +400 figurinhas para completar o álbum.</p>
                 </li>
                 <li className="flex gap-3 items-start">
                   <CheckCircle2 className="text-[#0a7337] shrink-0 mt-1" size={24} />
-                  <p className="text-gray-700 font-medium">As bordas de recorte grandes facilitam para as <strong>crianças menores usarem tesoura sem ponta</strong> sozinhas.</p>
+                  <p className="text-gray-700 font-medium">As figurinhas e o álbum possui um <strong>material super resistente e grosso</strong> sendo dificil de rasgar.</p>
                 </li>
               </ul>
               <ul className="space-y-4">
                 <li className="flex gap-3 items-start">
                   <CheckCircle2 className="text-[#0a7337] shrink-0 mt-1" size={24} />
-                  <p className="text-gray-700 font-medium">Design lúdico que transforma a brincadeira em um <strong>exercício de identificação de números e alfabeto</strong>.</p>
+                  <p className="text-gray-700 font-medium">Álbum da copa 2026 completo que transforma um momento <strong>em lazer e diversão</strong>.</p>
                 </li>
               </ul>
             </div>
@@ -351,48 +351,19 @@ export default function App() {
       </motion.section>
 
       {/* =========================================
-          PORQUE ESCOLHER O "PRODUTO"? (Quebra Objeções)
+          BOTÃO DE CHAMADA (CTA)
       ========================================= */}
       <motion.section 
         initial={{ opacity: 0, y: 30 }} 
         whileInView={{ opacity: 1, y: 0 }} 
         viewport={{ once: true, margin: "-50px" }} 
         transition={{ duration: 0.5 }}
-        className="py-20 px-4 bg-[#ffc107] relative border-y-8 border-yellow-300"
+        className="py-12 px-4 bg-white relative"
       >
         <div className="absolute inset-0 bg-white/20 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgdmlld0JveD0iMCAwIDIwIDIwIj48Y2lyY2xlIGN4PSIyIiBjeT0iMiIgcj0iMSIgZmlsbD0iI2QxZDVkYiIvPjwvc3ZnPg==')] opacity-30"></div>
         <div className="max-w-6xl mx-auto relative z-10">
-          <h2 className="text-3xl md:text-5xl font-black text-center text-[#b45309] mb-16 uppercase drop-shadow-sm leading-tight">Por que escolher o formato<br/><span className="text-[#0a7337] text-5xl md:text-7xl drop-shadow-md bg-white px-4 py-1 rounded-[2rem] inline-block mt-2 transform -rotate-2">StartKids?</span></h2>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-white rounded-[2rem] p-8 shadow-xl relative mt-8 md:mt-0">
-              <div className="w-20 h-20 bg-[#e63946] text-white rounded-full flex items-center justify-center absolute -top-10 left-1/2 -translate-x-1/2 shadow-lg border-4 border-white">
-                <XCircle size={36} />
-              </div>
-              <h3 className="font-bold text-xl mb-3 text-gray-800 text-center mt-6">O Fim das "Repetidas"</h3>
-              <p className="text-sm text-gray-600 text-center font-medium leading-relaxed">Sabe aquela frustração de gastar R$50 na padaria e só tirar figurinha que já tem? Aqui nós te entregamos o álbum 100% completo. Acabaram as lágrimas!</p>
-            </div>
-
-            <div className="bg-white rounded-[2rem] p-8 shadow-xl relative mt-8 md:mt-0 transform md:-translate-y-4 border-4 border-[#0a7337]">
-              <div className="w-24 h-24 bg-[#0a7337] text-white rounded-full flex items-center justify-center absolute -top-12 left-1/2 -translate-x-1/2 shadow-xl border-4 border-white">
-                <Star size={44} fill="currentColor"/>
-              </div>
-              <h3 className="font-bold text-2xl mb-3 text-[#0a7337] text-center mt-8 uppercase tracking-tight">Reposição Infinita</h3>
-              <p className="text-sm text-gray-600 text-center font-medium leading-relaxed">Criança derramou suco na página? Rasgou a figurinha especial na hora de descolar? Sem pânico! É só abrir o Suporte e pedir a mesma figurinha novamente.</p>
-            </div>
-
-            <div className="bg-white rounded-[2rem] p-8 shadow-xl relative mt-8 md:mt-0">
-              <div className="w-20 h-20 bg-[#3a86ff] text-white rounded-full flex items-center justify-center absolute -top-10 left-1/2 -translate-x-1/2 shadow-lg border-4 border-white">
-                <Heart size={36} />
-              </div>
-              <h3 className="font-bold text-xl mb-3 text-gray-800 text-center mt-6">Momento de Conexão</h3>
-              <p className="text-sm text-gray-600 text-center font-medium leading-relaxed">A atividade de colar e colecionar figurinhas, é a desculpa perfeita para vocês sentarem no chão da sala e brincarem juntos por horas.</p>
-            </div>
-          </div>
-
-          {/* CTA Opcional */}
-          <div className="text-center mt-16">
-            <a href="#ofertas" className="inline-flex items-center justify-center w-full sm:w-auto bg-[#0a7337] hover:bg-green-700 text-white font-bold text-xl py-5 px-10 rounded-full shadow-[0_6px_0_#064e3b] hover:shadow-[0_3px_0_#064e3b] hover:translate-y-[3px] transition-all uppercase animate-pulse-light">
+          <div className="text-center">
+            <a href="#presentes-especiais" className="inline-flex items-center justify-center w-full sm:w-auto bg-[#0a7337] hover:bg-green-700 text-white font-bold text-xl py-5 px-10 rounded-full shadow-[0_6px_0_#064e3b] hover:shadow-[0_3px_0_#064e3b] hover:translate-y-[3px] transition-all uppercase animate-pulse-light">
               FAZ SENTIDO! QUERO AGORA <ArrowRight className="ml-2" />
             </a>
           </div>
@@ -468,7 +439,7 @@ export default function App() {
           </div>
           <p className="mt-12 text-xl md:text-2xl font-bold text-white leading-relaxed bg-[#0a7337] w-screen relative left-1/2 -translate-x-1/2 py-10 px-4 max-w-none">
             <span className="block max-w-4xl mx-auto">
-              <span className="text-[#ffc107]">MAS CALMA!</span> Você não precisa gastar um absurdo para garantir a alegria dos pequenos. Liberamos o álbum completo com +400 figurinhas <span className="text-[#ffc107]">POR APENAS R$ 10,00</span>. Assim que realizar a confirmação do pagamento, você recebera os dados no WhatsApp e todo material será enviado no mesmo dia, tá bom?
+              <span className="text-[#ffc107]">MAS CALMA!</span> Você não precisa gastar um absurdo para garantir a alegria nessa copa. Liberamos o álbum completo com +400 figurinhas <span className="text-[#ffc107]">POR APENAS R$ 10,00</span>. Assim que realizar a confirmação do pagamento, você recebera os dados no WhatsApp e todo material será enviado grátis no mesmo dia, tá bom?
               <br /><br />
               <span className="text-[#ffc107]">Dá uma olhada nas reações de quem já recebeu o material 👇</span>
             </span>
