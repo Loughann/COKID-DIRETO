@@ -265,7 +265,7 @@ export default function App() {
 
           {/* CTA */}
           <a href="#o-que-voce-vai-receber" className={ctaClasses}>
-            QUERO O MEU ÁLBUM AGORA <ArrowRight className="ml-2" />
+            QUERO O MEU ÁLBUM AGORA
           </a>
           
           {/* BADGES INFORMATIVAS MOVIDAS */}
@@ -274,7 +274,7 @@ export default function App() {
               <ShieldCheck size={16} className="text-[#ffc107]"/> Compra 100% Segura
             </span>
             <span className="flex items-center gap-1.5 bg-green-900/40 text-green-100 px-4 py-2 rounded-full text-xs font-bold border border-green-500/30 shadow-inner backdrop-blur-sm">
-              <Download size={16} className="text-[#3a86ff]"/> Envio Imediato
+              <Truck size={16} className="text-[#3a86ff]"/> Frete Grátis
             </span>
             <span className="flex items-center gap-1.5 bg-green-900/40 text-green-100 px-4 py-2 rounded-full text-xs font-bold border border-green-500/30 shadow-inner backdrop-blur-sm hidden sm:flex">
               <Star size={16} className="text-[#ffc107]" fill="currentColor"/> Oferta Limitada
@@ -317,7 +317,7 @@ export default function App() {
                 <div key={idx} className={`shrink-0 w-[240px] md:w-[280px] aspect-square rounded-[2rem] p-6 flex flex-col items-center justify-center text-center shadow-lg transform transition-transform hover:-translate-y-2 border-4 border-gray-100 ${item.color} ${item.color.includes('text') ? '' : 'text-white'}`}>
                   <div className="mb-4 drop-shadow-md">{item.icon}</div>
                   <h3 className="font-bold text-xl leading-tight">{item.title}</h3>
-                  <p className="text-xs mt-3 opacity-80 font-semibold uppercase tracking-wider">Envio Imediato</p>
+                  <p className="text-xs mt-3 opacity-80 font-semibold uppercase tracking-wider">Frete Grátis</p>
                 </div>
               ))}
             </motion.div>
@@ -364,7 +364,7 @@ export default function App() {
         <div className="max-w-6xl mx-auto relative z-10">
           <div className="text-center">
             <a href="#presentes-especiais" className="inline-flex items-center justify-center w-full sm:w-auto bg-[#0a7337] hover:bg-green-700 text-white font-bold text-xl py-5 px-10 rounded-full shadow-[0_6px_0_#064e3b] hover:shadow-[0_3px_0_#064e3b] hover:translate-y-[3px] transition-all uppercase animate-pulse-light">
-              FAZ SENTIDO! QUERO AGORA <ArrowRight className="ml-2" />
+              FAZ SENTIDO! QUERO AGORA
             </a>
           </div>
         </div>
@@ -432,8 +432,8 @@ export default function App() {
         <div className="max-w-2xl mx-auto">
           <p className="text-[#fa0000] font-bold uppercase tracking-widest text-sm mb-4">Colocando na Ponta do Lápis...</p>
           <div className="bg-gray-100 rounded-3xl p-8 shadow-inner border border-gray-200 text-left md:text-center space-y-4 max-w-md mx-auto">
-            <div className="flex justify-between font-medium text-gray-600 border-b border-gray-200 pb-2"><span>Álbum Digital Completo:</span> <span>R$ 39,90</span></div>
-            <div className="flex justify-between font-medium text-gray-600 border-b border-gray-200 pb-2"><span>Kit Figurinhas (+400):</span> <span>R$ 47,20</span></div>
+            <div className="flex justify-between font-medium text-gray-600 border-b border-gray-200 pb-2"><span>Álbum Copa 2026:</span> <span>R$ 39,90</span></div>
+            <div className="flex justify-between font-medium text-gray-600 border-b border-gray-200 pb-2"><span>Pack Figurinhas (+400):</span> <span>R$ 47,20</span></div>
             <div className="flex justify-between font-medium text-gray-600 border-b border-gray-200 pb-2"><span>Coleção de 4 Bônus VIP:</span> <span>R$ 109,90</span></div>
             <div className="flex justify-between font-black text-gray-400 text-xl pt-2 line-through decoration-[#ff0000]"><span>VALOR TOTAL:</span> <span className="text-[#ff0000]">R$ 197,00</span></div>
           </div>
@@ -643,7 +643,7 @@ export default function App() {
             loading="lazy"
             decoding="async"
           />
-          <p>&copy; {new Date().getFullYear()} StartKids Álbum Digital - Todos os direitos reservados. Compra 100% processada com segurança HTTPS e Criptografia.</p>
+          <p>&copy; {new Date().getFullYear()} StartKids Álbum Copa 2026 - Todos os direitos reservados. Compra 100% processada com segurança HTTPS e Criptografia.</p>
         </div>
       </footer>
 
