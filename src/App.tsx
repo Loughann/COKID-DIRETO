@@ -522,6 +522,7 @@ export default function App() {
                   <span className="text-xl font-bold">,00</span>
                 </div>
                 <p className="text-xs font-black text-white bg-[#3a86ff] inline-block px-3 py-1 rounded-full mt-2 uppercase">Pagamento Único</p>
+                <img src="https://iili.io/BbVfOqQ.png" alt="Formas de Pagamento" className="w-full h-auto mx-auto mt-4 object-contain opacity-90" />
               </div>
 
               <ul className="space-y-4 mb-8 flex-grow">
