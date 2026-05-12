@@ -264,7 +264,7 @@ export default function App() {
           </div>
 
           {/* CTA */}
-          <a href="#o-que-voce-vai-receber" className={ctaClasses}>
+          <a href="#ofertas" className={ctaClasses}>
             QUERO O MEU ÁLBUM AGORA
           </a>
           
@@ -363,7 +363,7 @@ export default function App() {
         <div className="absolute inset-0 bg-white/20 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgdmlld0JveD0iMCAwIDIwIDIwIj48Y2lyY2xlIGN4PSIyIiBjeT0iMiIgcj0iMSIgZmlsbD0iI2QxZDVkYiIvPjwvc3ZnPg==')] opacity-30"></div>
         <div className="max-w-6xl mx-auto relative z-10">
           <div className="text-center">
-            <a href="#presentes-especiais" className="inline-flex items-center justify-center w-full sm:w-auto bg-[#0a7337] hover:bg-green-700 text-white font-bold text-xl py-5 px-10 rounded-full shadow-[0_6px_0_#064e3b] hover:shadow-[0_3px_0_#064e3b] hover:translate-y-[3px] transition-all uppercase animate-pulse-light">
+            <a href="#ofertas" className="inline-flex items-center justify-center w-full sm:w-auto bg-[#0a7337] hover:bg-green-700 text-white font-bold text-xl py-5 px-10 rounded-full shadow-[0_6px_0_#064e3b] hover:shadow-[0_3px_0_#064e3b] hover:translate-y-[3px] transition-all uppercase animate-pulse-light">
               FAZ SENTIDO! QUERO AGORA
             </a>
           </div>
@@ -527,6 +527,8 @@ export default function App() {
               <ul className="space-y-4 mb-8 flex-grow">
                 <li className="flex gap-3 items-center"><CheckCircle2 className="text-[#3a86ff] shrink-0" size={24} /> <span className="text-sm font-bold text-gray-700">Álbum Completo Copa 2026</span></li>
                 <li className="flex gap-3 items-center"><CheckCircle2 className="text-[#3a86ff] shrink-0" size={24} /> <span className="text-sm font-bold text-gray-700">+400 Figurinhas Jogadores</span></li>
+                <li className="flex gap-3 items-center"><CheckCircle2 className="text-[#3a86ff] shrink-0" size={24} /> <span className="text-sm text-gray-800 font-bold">Receba em menos de 24H</span></li>
+                <li className="flex gap-3 items-center"><Truck className="text-[#3a86ff] shrink-0" size={24} /> <span className="text-sm text-[#3a86ff] font-black uppercase">ENVIO GRÁTIS</span></li>
                 <li className="flex gap-3 items-start opacity-40"><X className="text-gray-400 shrink-0 mt-0.5" size={24} /> <span className="text-sm font-medium text-gray-500 line-through">Sem Nenhum Bônus</span></li>
               </ul>
 
@@ -534,10 +536,10 @@ export default function App() {
                 role="button"
                 tabIndex={0}
                 onClick={handleBasicClick}
-                className="w-full py-6 rounded-[80px] border-solid border-4 border-[#48afff] bg-[#48afff] text-black font-black hover:bg-blue-400 hover:border-blue-400 transition-all uppercase text-xl text-center cursor-pointer animate-pulse-light block"
+                className="w-full bg-[#3a86ff] hover:bg-[#2563eb] text-white font-black text-xl py-6 rounded-2xl shadow-[0_6px_0_#1e40af] hover:shadow-[0_3px_0_#1e40af] hover:translate-y-[3px] transition-all uppercase animate-pulse-light text-center cursor-pointer block"
                 onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') handleBasicClick(e as any) }}
               >
-                Comprar Básico
+                COMPRAR BÁSICO
               </div>
             </div>
 
