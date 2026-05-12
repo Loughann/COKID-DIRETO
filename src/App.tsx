@@ -532,15 +532,12 @@ export default function App() {
                 <li className="flex gap-3 items-start opacity-40"><X className="text-gray-400 shrink-0 mt-0.5" size={24} /> <span className="text-sm font-medium text-gray-500 line-through">Sem Nenhum Bônus</span></li>
               </ul>
 
-              <div 
-                role="button"
-                tabIndex={0}
-                onClick={handleBasicClick}
-                className="w-full bg-[#3a86ff] hover:bg-[#2563eb] text-white font-black text-xl py-6 rounded-2xl shadow-[0_6px_0_#1e40af] hover:shadow-[0_3px_0_#1e40af] hover:translate-y-[3px] transition-all uppercase animate-pulse-light text-center cursor-pointer block"
-                onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') handleBasicClick(e as any) }}
+              <a 
+                href="https://pay.lowify.com.br/checkout?product_id=rJu6er"
+                className="w-full bg-[#3a86ff] hover:bg-[#2563eb] text-white font-black text-xl py-6 rounded-2xl shadow-[0_6px_0_#1e3a8a] hover:shadow-[0_3px_0_#1e3a8a] hover:translate-y-[3px] transition-all uppercase text-center cursor-pointer block"
               >
-                COMPRAR BÁSICO
-              </div>
+                GARANTIR AGORA
+              </a>
             </div>
 
             {/* PACOTE PREMIUM (The target) */}
