@@ -305,14 +305,14 @@ export default function App() {
               transition={{ ease: "linear", duration: 15, repeat: Infinity }}
             >
               {[ 
-                { title: "Album Estádios copa 2026", color: "bg-[#0a7337]", icon: <BookOpen size={40}/> },
-                { title: "+400 Figurinhas Alta Qualidade", color: "bg-[#3a86ff]", icon: <Printer size={40}/> },
-                { title: "Certificado de Colecionador Oficial", color: "bg-[#ffc107] text-[#b45309]", icon: <Medal size={40}/> },
-                { title: "Figurinhas Jogadores Premium", color: "bg-[#e63946]", icon: <CheckSquare size={40}/> },
-                { title: "Álbum Copa do Mundo 2026", color: "bg-[#0a7337]", icon: <BookOpen size={40}/> },
-                { title: "+400 Figurinhas Alta Qualidade", color: "bg-[#3a86ff]", icon: <Printer size={40}/> },
-                { title: "Certificado de Colecionador Oficial", color: "bg-[#ffc107] text-[#b45309]", icon: <Medal size={40}/> },
-                { title: "Materiais Bônus Copa 2026", color: "bg-[#e63946]", icon: <CheckSquare size={40}/> }
+                { title: "Album Estádios copa 2026", color: "bg-[#0a7337]", icon: <img src="https://iili.io/BbVykas.png" className="w-16 h-16 object-contain" alt="Álbum" /> },
+                { title: "+400 Figurinhas Copa 2026", color: "bg-[#3a86ff]", icon: <img src="https://iili.io/BbVyv8G.png" className="w-16 h-16 object-contain" alt="Figurinhas" /> },
+                { title: "Certificado de Colecionador Oficial", color: "bg-[#ffc107] text-[#b45309]", icon: <CheckCircle2 size={48} className="text-[#0a7337]" /> },
+                { title: "Figurinhas Jogadores Premium", color: "bg-[#e63946]", icon: <img src="https://iili.io/BbWqVg2.png" className="w-16 h-16 object-contain" alt="Premium" /> },
+                { title: "Álbum Copa do Mundo 2026", color: "bg-[#0a7337]", icon: <img src="https://iili.io/BbVykas.png" className="w-16 h-16 object-contain" alt="Álbum" /> },
+                { title: "+400 Figurinhas Copa 2026", color: "bg-[#3a86ff]", icon: <img src="https://iili.io/BbVyv8G.png" className="w-16 h-16 object-contain" alt="Figurinhas" /> },
+                { title: "Certificado de Colecionador Oficial", color: "bg-[#ffc107] text-[#b45309]", icon: <CheckCircle2 size={48} className="text-[#0a7337]" /> },
+                { title: "Materiais Bônus Copa 2026", color: "bg-[#e63946]", icon: <img src="https://iili.io/BbWqVg2.png" className="w-16 h-16 object-contain" alt="Materiais Bônus" /> }
               ].map((item, idx) => (
                 <div key={idx} className={`shrink-0 w-[240px] md:w-[280px] aspect-square rounded-[2rem] p-6 flex flex-col items-center justify-center text-center shadow-lg transform transition-transform hover:-translate-y-2 border-4 border-gray-100 ${item.color} ${item.color.includes('text') ? '' : 'text-white'}`}>
                   <div className="mb-4 drop-shadow-md">{item.icon}</div>
