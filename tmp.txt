@@ -1,0 +1,131 @@
+181-
+182-        <div className="max-w-4xl mx-auto text-center relative z-10">
+183-          
+184-          {/* LOGO STARTKIDS (IMAGE) */}
+185-          <div className="flex flex-col items-center justify-center -mt-2 -mb-2 relative z-20">
+186:            <img 
+187-              src="https://iili.io/BiS3b5P.png" 
+188-              alt="StartKids Álbum da Copa do Mundo Infantil" 
+189-              className="w-full max-w-[280px] md:max-w-[320px] drop-shadow-2xl hover:scale-105 transition-transform duration-300" 
+190-              referrerPolicy="no-referrer"
+191-              decoding="async"
+--
+216-                     onClick={toggleVideo}
+217-                   >
+218-                     {/* Initial Thumbnail and Play Overlay */}
+219-                     {!isVideoPlaying && (
+220-                       <div className="absolute inset-0 flex items-center justify-center bg-black/40 hover:bg-black/20 transition-colors">
+221:                          <img 
+222-                             src="https://iili.io/BsLxE4S.png" 
+223-                             alt="Thumbnail" 
+224-                             className="absolute inset-0 w-full h-full object-cover opacity-70"
+225-                             loading="lazy"
+226-                             decoding="async"
+--
+303-              className="flex gap-4 md:gap-6 w-max"
+304-              animate={{ x: ["0%", "-50%"] }}
+305-              transition={{ ease: "linear", duration: 15, repeat: Infinity }}
+306-            >
+307-              {[ 
+308:                { title: "Album Estádios copa 2026", color: "bg-[#0a7337]", icon: <img src="https://iili.io/BbVykas.png" className="w-16 h-16 object-contain" alt="Álbum" /> },
+309:                { title: "+400 Figurinhas Copa 2026", color: "bg-[#3a86ff]", icon: <img src="https://iili.io/BbVyv8G.png" className="w-16 h-16 object-contain" alt="Figurinhas" /> },
+310-                { title: "Certificado de Colecionador Oficial", color: "bg-[#ffc107] text-[#b45309]", icon: <CheckCircle2 size={48} className="text-[#0a7337]" /> },
+311:                { title: "Figurinhas Jogadores Premium", color: "bg-[#e63946]", icon: <img src="https://iili.io/BbWqVg2.png" className="w-16 h-16 object-contain" alt="Premium" /> },
+312:                { title: "Álbum Copa do Mundo 2026", color: "bg-[#0a7337]", icon: <img src="https://iili.io/BbVykas.png" className="w-16 h-16 object-contain" alt="Álbum" /> },
+313:                { title: "+400 Figurinhas Copa 2026", color: "bg-[#3a86ff]", icon: <img src="https://iili.io/BbVyv8G.png" className="w-16 h-16 object-contain" alt="Figurinhas" /> },
+314-                { title: "Certificado de Colecionador Oficial", color: "bg-[#ffc107] text-[#b45309]", icon: <CheckCircle2 size={48} className="text-[#0a7337]" /> },
+315:                { title: "Materiais Bônus Copa 2026", color: "bg-[#e63946]", icon: <img src="https://iili.io/BbWqVg2.png" className="w-16 h-16 object-contain" alt="Materiais Bônus" /> }
+316-              ].map((item, idx) => (
+317-                <div key={idx} className={`shrink-0 w-[240px] md:w-[280px] aspect-square rounded-[2rem] p-6 flex flex-col items-center justify-center text-center shadow-lg transform transition-transform hover:-translate-y-2 border-4 border-gray-100 ${item.color} ${item.color.includes('text') ? '' : 'text-white'}`}>
+318-                  <div className="mb-4 drop-shadow-md">{item.icon}</div>
+319-                  <h3 className="font-bold text-xl leading-tight">{item.title}</h3>
+320-                  <p className="text-xs mt-3 opacity-80 font-semibold uppercase tracking-wider">Frete Grátis</p>
+--
+391-            <p className="text-gray-600 font-bold mt-6 text-lg">Apenas para quem garantir o PACOTE PREMIUM nesta página.</p>
+392-          </div>
+393-
+394-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+395-            {[ 
+396:              { title: "Livro de Colorir Jogadores", desc: "Os craques em versão desenho animado para as crianças soltarem as cores.", img: "https://iili.io/BLL4sb1.png", val: "R$ 29,90" },
+397:              { title: "Receitas Kids da Copa", desc: "Aprenda a fazer os lanchinhos tematicos da copa do mundo!", img: "https://iili.io/BLL4tsa.png", val: "R$ 19,90" },
+398:              { title: "Envelope Jogadores Premium", desc: "Figurinhas dos jogadores premium douradas.", img: "https://iili.io/BLL4ZWg.png", val: "R$ 35,00" },
+399:              { title: "Álbum de Estádios", desc: "Álbum e figurinhas de todos estádios da copa do mundo 2026.", img: "https://iili.io/BLL4bqJ.png", val: "R$ 25,00" }
+400-            ].map((bonus, i) => (
+401:              <div key={i} className={`bg-white p-6 rounded-[2rem] shadow-md border-2 border-dashed border-red-200 flex ${bonus.img ? 'flex-col items-center' : 'flex-col sm:flex-row items-center sm:items-start text-center sm:text-left'} gap-4 hover:border-red-500 transition-colors group`}>
+402:                {bonus.img ? (
+403-                  <div className="w-full flex items-center justify-center group-hover:scale-105 transition-transform">
+404:                     <img src={bonus.img} alt={bonus.title} className="w-full max-w-[140px] md:max-w-[160px] object-contain drop-shadow-2xl" loading="lazy" decoding="async" />
+405-                  </div>
+406-                ) : (
+407-                  <div className="w-16 h-16 bg-red-50 rounded-2xl flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+408-                    <div className="scale-150">{bonus.icon}</div>
+409-                  </div>
+410-                )}
+411:                <div className={bonus.img ? "text-center w-full" : ""}>
+412-                  <h4 className="font-bold text-lg text-gray-800 uppercase tracking-tight mb-1">{bonus.title}</h4>
+413-                  <p className="text-sm text-gray-600 mb-2 font-medium">{bonus.desc}</p>
+414-                  <p className="text-sm font-black text-[#e63946] bg-red-50 inline-block px-3 py-1.5 rounded">Valor: <span className="line-through text-gray-400 font-bold">{bonus.val}</span> <span className="ml-1 uppercase">Grátis Hoje!</span></p>
+415-                </div>
+416-              </div>
+--
+480-                "https://iili.io/BsL3xBn.jpg",
+481-                "https://iili.io/BsL3z1s.jpg",
+482-                "https://iili.io/BsL3nLX.jpg",
+483-                "https://iili.io/BsL3IrG.jpg",
+484-                "https://iili.io/BsL3xBn.jpg"
+485:              ].map((img, i) => (
+486-                 <div key={i} className="w-[280px] sm:w-[320px] bg-gray-50 rounded-3xl overflow-hidden shadow-lg border-4 border-white flex-shrink-0">
+487:                   <img src={img} alt={`Avaliação ${i+1}`} className="w-full h-auto object-cover hover:scale-105 transition-transform duration-300" loading="lazy" decoding="async" />
+488-                 </div>
+489-              ))}
+490-            </motion.div>
+491-          </div>
+492-        </div>
+--
+520-                  <span className="text-xl font-bold">R$</span>
+521-                  <span className="text-6xl font-black tracking-tighter">10</span>
+522-                  <span className="text-xl font-bold">,00</span>
+523-                </div>
+524-                <p className="text-xs font-black text-white bg-[#3a86ff] inline-block px-3 py-1 rounded-full mt-2 uppercase">Pagamento Único</p>
+525:                <img src="https://iili.io/BbVfOqQ.png" alt="Formas de Pagamento" className="w-full h-auto mx-auto mt-4 object-contain opacity-90" />
+526-              </div>
+527-
+528-              <ul className="space-y-4 mb-8 flex-grow">
+529-                <li className="flex gap-3 items-center"><CheckCircle2 className="text-[#3a86ff] shrink-0" size={24} /> <span className="text-sm font-bold text-gray-700">Álbum Completo Copa 2026</span></li>
+530-                <li className="flex gap-3 items-center"><CheckCircle2 className="text-[#3a86ff] shrink-0" size={24} /> <span className="text-sm font-bold text-gray-700">+400 Figurinhas Jogadores</span></li>
+--
+620-          </div>
+621-
+622-          {/* Garantia in-face */}
+623-          <div className="bg-[#0a7337] rounded-[2rem] p-8 md:p-12 shadow-2xl flex flex-col md:flex-row items-center gap-8 text-center md:text-left relative overflow-hidden">
+624-             <div className="absolute top-0 right-0 w-64 h-64 bg-white opacity-5 rounded-full blur-3xl"></div>
+625:             <img src="https://iili.io/BsPnY1n.png" alt="Garantia" className="w-full max-w-[280px] md:max-w-[320px] shrink-0 drop-shadow-2xl" loading="lazy" decoding="async" />
+626-             <div>
+627-                <p className="text-green-100 font-medium text-sm md:text-base leading-relaxed">Nós confiamos tanto na alegria que esse material vai gerar na sua casa que damos uma garantia incondicional. Comprou, recebeu, não gostou da qualidade? Mande um e-mail que devolvemos seu dinheiro na hora. Zero risco para você.</p>
+628-             </div>
+629-          </div>
+630-        </div>
+--
+633-      {/* =========================================
+634-          FOOTER
+635-      ========================================= */}
+636-      <footer className="bg-gray-900 text-gray-500 text-center py-12 px-4 text-xs">
+637-        <div className="max-w-4xl mx-auto flex flex-col items-center">
+638:          <img 
+639-            src="https://iili.io/BiS3b5P.png" 
+640-            alt="StartKids Álbum da Copa do Mundo Infantil" 
+641-            className="w-full max-w-[120px] mb-8 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300"
+642-            referrerPolicy="no-referrer"
+643-            loading="lazy"
+--
+674-                </div>
+675-              </div>
+676-
+677-              {/* Content */}
+678-              <div className="p-4 sm:p-6 md:p-8 overflow-y-auto overscroll-y-contain">
+679:                <img src="https://iili.io/BsLL4dF.png" alt="Bônus Exclusivos" className="w-full max-w-[250px] sm:max-w-[320px] md:max-w-[400px] mx-auto mb-3 md:mb-5 drop-shadow-xl" loading="lazy" decoding="async" />
+680-
+681-                <div className="bg-yellow-50 rounded-2xl p-3 sm:p-4 border-2 border-yellow-300 mb-4 sm:mb-6 relative shadow-inner">
+682-                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#ffc107] text-[#0a7337] text-[10px] sm:text-xs font-black px-3 py-0.5 sm:py-1 rounded-full uppercase tracking-widest shadow-sm whitespace-nowrap">
+683-                    Apenas nessa janela
+684-                  </div>
